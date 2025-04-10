@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo de Layout</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .tema-escuro .cartao {
+            background-color: #454d55;
+            color: white;
+        }
+        .tema-claro .cartao {
+            background-color: white;
+            color: black;
+        }
+        .secao-rodape {
+            display: inline-block;
+            margin: 0 15px;
+            text-align: left;
+        }
+        .lista-rodape {
+            list-style-type: none;
+            padding: 0;
+        }
+        .botao-alternar-tema {
+            cursor: pointer;
+            margin: 10px;
+            padding: 5px 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .botao-alternar-tema:hover {
+            background-color: #0056b3;
+        }
+        .cartao-img-top {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+        .cabecalho-site, .rodape-site {
+            text-align: center;
+            padding: 20px;
+        }
+        .cartao {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .cartao-corpo {
+            flex-grow: 1;
+            padding: 15px;
+        }
+    </style>
+</head>
+<body class="tema-escuro bg-dark text-white">
+    <header class="cabecalho-site bg-dark text-white">
+        <h1>Meu Site</h1>
+        <p>Bem-vindo ao meu site!</p>
+        <button class="botao-alternar-tema" onclick="alternarTema()">Alternar Tema</button>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <div class="cartao mb-4 tema-claro-cartao">
+                    <img src="lambo-huracan.jpeg" class="cartao-img-top" alt="Imagem do Cartão 1">
+                    <div class="cartao-corpo text-center">
+                        <h5 class="cartao-titulo">Cartão 1</h5>
+                        <p class="cartao-texto">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque consequuntur sapiente beatae pariatur minima dolorum illo magnam amet explicabo fugiat nulla deleniti, eveniet cumque facilis minus? Qui, voluptatum. Possimus, saepe.</p>
+                        <a href="#" class="btn btn-primary">Saiba mais</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="cartao mb-4">
+                    <img src="ferrari-f40.jpeg" class="cartao-img-top" alt="Imagem do Cartão 2">
+                    <div class="cartao-corpo text-center">
+                        <h5 class="cartao-titulo">Cartão 2</h5>
+                        <p class="cartao-texto">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut amet, error id unde autem est dolorum ex excepturi perspiciatis quae quia, hic nisi, rem assumenda consequuntur vitae? Similique, molestiae suscipit.</p>
+                        <a href="#" class="btn btn-primary">Saiba mais</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="cartao mb-4">
+                    <img src="aston-martin-valkyrie.jpeg" class="cartao-img-top" alt="Imagem do Cartão 3">
+                    <div class="cartao-corpo text-center">
+                        <h5 class="cartao-titulo">Cartão 3</h5>
+                        <p class="cartao-texto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi porro, eius excepturi ea nulla deserunt beatae eum possimus numquam obcaecati dicta alias facere architecto velit. Corrupti hic porro laborum sapiente!</p>
+                        <a href="#" class="btn btn-primary">Saiba mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="secao-sobre my-5">
+            <div class="text-center text-md-left">
+                <h2>Sobre</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus saepe distinctio voluptas laborum! Dignissimos suscipit, amet illum exercitationem laborum quia beatae necessitatibus nobis. Et fugit consectetur deleniti omnis possimus architecto.</p>
+            </div>
+        </section>
+        <section class="secao-contato my-5">
+            <h2>Contato</h2>
+            <form>
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" id="nome" placeholder="Seu nome">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Seu email">
+                </div>
+                <div class="form-group">
+                    <label for="mensagem">Mensagem</label>
+                    <input type="text" class="form-control" id="mensagem" placeholder="Sua mensagem">
+                </div>
+                <button type="submit" class="btn btn-success">Enviar</button>
+            </form>
+        </section>
+    </div>
+    <footer class="rodape-site bg-dark text-white">
+        <div class="secao-rodape">
+            <h1>Contatos</h1>
+            <ul class="lista-rodape">
+                <li>(55) 11 98234-2334</li>
+                <li>(55) 11 12332-2335</li>
+                <li>(55) 11 69696-1135</li>
+            </ul>
+        </div>
+        <div class="secao-rodape">
+            <h1>Endereço</h1>
+            <ul class="lista-rodape">
+                <li>Av. Principal, 15</li>    
+                <li>Rua Carlos Pinto, 19</li>
+                <li>Rua Central, 234</li>
+            </ul>
+        </div>
+        <div class="secao-rodape">
+            <h1>Redes Sociais</h1>
+            <ul class="lista-rodape">
+                <li>Facebook</li>
+                <li>Instagram</li>
+                <li>Twitter</li>
+            </ul>
+        </div>
+    </footer>
+    <script>
+        function alternarTema() {
+            document.body.classList.toggle('tema-escuro');
+            document.body.classList.toggle('tema-claro');
+        }
+    </script>
+</body>
+</html>
