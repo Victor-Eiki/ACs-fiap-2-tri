@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atualizar Alunos</title>
+</head>
+
+<body>
+    <h1>Ataulize os dados de alunos</h1>
+    <p>Modifique as informações dos alunos.</p>
+
+    <form action="http://localhost:3000/atualizar-aluno" method="post">
+        <label for="nome">Nome do aluno:</label>
+        <input type="text" name="nome">
+
+        <label for="sala">Sala:</label>
+        <input type="number" name="sala">
+
+        <label for="numero">Número da chamada:</label>
+        <input type="number" name="numero">
+
+        <label for="materiaFav">Matéria favorita:</label>
+        <input type="text" name="materiaFav">
+
+        <label for="sexo">Sexo:</label>
+        <input type="text" name="sexo">
+
+        <button type="submit">Atualizar aluno</button>
+    </form>
+
+    <div class="button-container">
+        <button><a href="/">Voltar</a></button>
+    </div>
+</body>
+
+</html>
