@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const AgendasData = fs.readFileSync(AgendasPath, 'utf-8');
-const Agendas = JSON.parse(AgendasData)
+const Agendas = JSON.parse(AgendasData);
 
 function SalvarDados(Agendas) {
     fs.writeFileSync(AgendasPath, JSON.stringify(Agendas, null, 2));
@@ -20,7 +20,7 @@ function TruncarDescricao(descricao, ComprimentoMaximo) {
     if (descricao.length > ComprimentoMaximo) {
         return descricao.slice(0, ComprimentoMaximo) + '...';
     }
-    return descricao
+    return descricao;
 }
 
 app.get('/', (req, res) => {
@@ -30,12 +30,12 @@ app.get('/', (req, res) => {
         const DescricaoTruncada = TruncarDescricao(agenda.descricao, 100);
         AgendasTable += `
         <tr>
-            <td><a href="/excluir-agendas">Excluir</a></td>
+            <td><a href="/excluir-agendas?titulo=${encodeURIComponent(agenda.titulo)}" class="btn btn-danger btn-sm">Excluir</a></td>
             <td>${agenda.titulo}</td>
             <td>${agenda.disciplina}</td>
             <td>${DescricaoTruncada}</td>
             <td>${agenda.dataEntrega}</td>
-            <td><a href="/atualizar-agendas">Editar</a></td>
+            <td><a href="/atualizar-agendas?titulo=${encodeURIComponent(agenda.titulo)}" class="btn btn-warning btn-sm">Editar</a></td>
         </tr>
         `;
     });
@@ -47,77 +47,105 @@ app.get('/', (req, res) => {
 });
 
 app.get('/inserir-agendas', (req, res) => {
-    res.sendFile(path.join(__dirname, 'InserirAgendas.html'))
+    res.sendFile(path.join(__dirname, 'InserirAgendas.html'));
 });
 
 app.post('/inserir-agendas', (req, res) => {
     const NovoArtigo = req.body;
 
-    if (Artigos.find(Artigos => Artigos.nome.toLowerCase() === NovoArtigo.nome.toLowerCase())) {
+    if (Agendas.find(agenda => agenda.titulo.toLowerCase() === NovoArtigo.titulo.toLowerCase())) {
         res.send(`<h1>Agenda já existe. Não é possível adicionar duplicatas.</h1><button><a href="/">Voltar</a></button>`);
+        return;
     }
 
-    Artigos.push(NovoArtigo);
-    SalvarDados(Artigos);
-    res.send(`<h1>Agenda adicionado com sucesso!</h1><button><a href="/inserir-agendas">Voltar</a></button>`);
+    Agendas.push(NovoArtigo);
+    SalvarDados(Agendas);
+    res.send(`<h1>Agenda adicionada com sucesso!</h1><button><a href="/">Voltar</a></button>`);
 });
 
 app.get('/atualizar-agendas', (req, res) => {
-    res.sendFile(path.join(__dirname, 'AtualizarAgendas.html'))
+    res.sendFile(path.join(__dirname, 'AtualizarAgendas.html'));
 });
 
 app.post('/atualizar-agendas', (req, res) => {
-    const { titulo, NovaDescricao, NovaDisciplina, NovaDataEntrega } = req.body
-
-    const AgendasIndex = Agendas.findIndex(Agenda => Agenda.titulo.toLowerCase() === titulo.toLowerCase());
+    const { titulo, NovaDescricao, NovaDisciplina, NovaDataEntrega } = req.body;
+    const AgendasIndex = Agendas.findIndex(agenda => agenda.titulo.toLowerCase() === titulo.toLowerCase());
 
     if (AgendasIndex === -1) {
         res.send(`<h1>Agenda não encontrada.</h1><button><a href="/atualizar-agendas">Voltar</a></button>`);
         return;
     }
 
-    Agendas[AgendasIndex].descricao = NovaDescricao
-    Agendas[AgendasIndex].disciplina = NovaDisciplina
-    Agendas[AgendasIndex].dataEntrega = NovaDataEntrega
+    Agendas[AgendasIndex].descricao = NovaDescricao;
+    Agendas[AgendasIndex].disciplina = NovaDisciplina;
+    Agendas[AgendasIndex].dataEntrega = NovaDataEntrega;
 
     SalvarDados(Agendas);
-    res.send(`<h1>Dados da Agenda atualizados com sucesso!</h1><button><a href="/atualizar-jogos">Volar</a></button>`);
+    res.send(`<h1>Dados da Agenda atualizados com sucesso!</h1><button><a href="/">Voltar</a></button>`);
 });
 
 app.get('/excluir-agendas', (req, res) => {
-    res.sendFile(path.join(__dirname, 'ExcluirAgenda.html'));
-});
-
-app.post('/excluir-agendas', (req, res) =>{
-    const { titulo } = req.body;
+    const { titulo } = req.query;
+    if (!titulo) {
+        res.sendFile(path.join(__dirname, 'ExcluirAgenda.html'));
+        return;
+    }
 
     const AgendasIndex = Agendas.findIndex(agenda => agenda.titulo.toLowerCase() === titulo.toLowerCase());
 
     if (AgendasIndex === -1) {
-        res.send(`<h1>Agenda não encontrada.</h1>`);
+        res.send(`<h1>Agenda não encontrada.</h1><button><a href="/">Voltar</a></button>`);
         return;
     }
 
     res.send(`
         <script>
           if (confirm('Tem certeza de que deseja excluir a Agenda ${titulo}?')) {
-            window.location.href = '/excluir-agendas-confirmado?titulo=${titulo}';
+            window.location.href = '/excluir-agendas-confirmado?titulo=${encodeURIComponent(titulo)}';
           } else {
-            window.location.href = '/excluir-agendas';
+            window.location.href = '/';
           }
         </script>
     `);
 });
 
 app.get('/excluir-agendas-confirmado', (req, res) => {
-    const titulo = req.query.nome;
+    const titulo = req.query.titulo;
 
-    const AgendasIndex = Agendas.findIndex(agenda => agenda.titulo.toLowerCase() === titulo.toLocaleLowerCase());
+    const AgendasIndex = Agendas.findIndex(agenda => agenda.titulo.toLowerCase() === titulo.toLowerCase());
+
+    if (AgendasIndex === -1) {
+        res.send(`<h1>Agenda não encontrada.</h1><button><a href="/">Voltar</a></button>`);
+        return;
+    }
 
     Agendas.splice(AgendasIndex, 1);
-
     SalvarDados(Agendas);
-    res.send(`<h1>A Agenda ${titulo} foi excluido com sucesso!</h1>`);
+    res.send(`<h1>A Agenda ${titulo} foi excluída com sucesso!</h1><button><a href="/">Voltar</a></button>`);
+});
+
+app.get('/filtrar-agendas', (req, res) => {
+    const disciplina = req.query.disciplina ? req.query.disciplina.toLowerCase() : '';
+    let AgendasFiltradasTable = '';
+
+    const agendasFiltradas = disciplina ? Agendas.filter(agenda => agenda.disciplina.toLowerCase().includes(disciplina)) : Agendas;
+
+    agendasFiltradas.forEach(agenda => {
+        const DescricaoTruncada = TruncarDescricao(agenda.descricao, 100);
+        AgendasFiltradasTable += `
+        <tr>
+            <td>${agenda.titulo}</td>
+            <td>${agenda.disciplina}</td>
+            <td>${DescricaoTruncada}</td>
+            <td>${agenda.dataEntrega}</td>
+        </tr>
+        `;
+    });
+
+    const htmlContent = fs.readFileSync('FiltrarAgenda.html', 'utf-8');
+    const finalHtml = htmlContent.replace('{{AgendasFiltradas}}', AgendasFiltradasTable);
+
+    res.send(finalHtml);
 });
 
 app.listen(port, () => {
