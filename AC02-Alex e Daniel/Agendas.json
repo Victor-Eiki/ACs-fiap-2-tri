@@ -1,0 +1,62 @@
+[
+    {
+        "titulo": "Resenha de Literatura",
+        "descricao": "Escrever uma resenha crítica sobre o livro 'Dom Casmurro' de Machado de Assis.",
+        "disciplina": "Literatura",
+        "dataEntrega": "2025-06-20"
+    },
+    {
+        "titulo": "Experimento de Física",
+        "descricao": "Realizar um experimento sobre movimento uniforme e elaborar um relatório.",
+        "disciplina": "Física",
+        "dataEntrega": "2025-06-25"
+    },
+    {
+        "titulo": "Apresentação de História",
+        "descricao": "Preparar uma apresentação sobre a Revolução Industrial.",
+        "disciplina": "História",
+        "dataEntrega": "2025-06-18"
+    },
+    {
+        "titulo": "Prova de Matemática",
+        "descricao": "Resolver exercícios de geometria analítica para a prova.",
+        "disciplina": "Matemática",
+        "dataEntrega": "2025-06-22"
+    },
+    {
+        "titulo": "Projeto de Biologia",
+        "descricao": "Criar um modelo de célula animal com materiais recicláveis.",
+        "disciplina": "Biologia",
+        "dataEntrega": "2025-06-30"
+    },
+    {
+        "titulo": "Ensaio de Filosofia",
+        "descricao": "Escrever um ensaio sobre o conceito de liberdade em Sartre.",
+        "disciplina": "Filosofia",
+        "dataEntrega": "2025-06-27"
+    },
+    {
+        "titulo": "Mapa de Geografia",
+        "descricao": "Desenhar um mapa temático sobre biomas brasileiros.",
+        "disciplina": "Geografia",
+        "dataEntrega": "2025-06-19"
+    },
+    {
+        "titulo": "Exercícios de Química",
+        "descricao": "Resolver lista de exercícios sobre ligações químicas.",
+        "disciplina": "Química",
+        "dataEntrega": "2025-06-21"
+    },
+    {
+        "titulo": "Redação de Inglês",
+        "descricao": "Escrever uma redação sobre os impactos da globalização.",
+        "disciplina": "Inglês",
+        "dataEntrega": "2025-06-23"
+    },
+    {
+        "titulo": "Trabalho de Sociologia",
+        "descricao": "Analisar o impacto das redes sociais na sociedade contemporânea.",
+        "disciplina": "Sociologia",
+        "dataEntrega": "2025-06-28"
+    }
+]

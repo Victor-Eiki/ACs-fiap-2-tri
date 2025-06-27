@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inserir na Agenda</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+  <div class="container mt-5">
+    <div class="card shadow-lg p-4">
+      <h1 class="mb-4 text-primary">Inserir Nova Tarefa</h1>
+      <form action="/inserir-agendas" method="post">
+        <div class="mb-3">
+          <label for="titulo" class="form-label">Título da Tarefa:</label>
+          <input type="text" name="titulo" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="disciplina" class="form-label">Disciplina:</label>
+          <input type="text" name="disciplina" class="form-control" required>
+        </div>
+        <div class="mb-3">
+          <label for="descricao" class="form-label">Descrição:</label>
+          <input type="text" name="descricao" class="form-control" required>
+        </div>
+        <div class="mb-4">
+          <label for="dataEntrega" class="form-label">Data de Entrega:</label>
+          <input type="date" name="dataEntrega" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-success">Inserir na Agenda</button>
+        <a href="/" class="btn btn-secondary ms-2">Voltar</a>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

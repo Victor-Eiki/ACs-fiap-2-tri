@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agenda Escolar</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body class="bg-light">
+  <header class="bg-primary text-white py-4 mb-4 shadow">
+    <div class="container">
+      <h1 class="h3 mb-3">Sistema de Agenda Escolar</h1>
+      <form action="/" method="GET" class="row g-3">
+        <div class="col-md-4">
+          <label for="disciplina" class="form-label">Filtrar por disciplina:</label>
+          <input type="text" id="disciplina" name="disciplina" class="form-control" placeholder="Ex: Matemática" required>
+        </div>
+        <div class="col-md-auto d-flex align-items-end gap-2">
+          <button type="submit" class="btn btn-light">Filtrar</button>
+          <a href="/" class="btn btn-outline-light">Limpar Filtro</a>
+        </div>
+        <div class="col-md-auto d-flex align-items-end gap-2">
+          <a href="/inserir-agendas" class="btn btn-dark">Adicionar Agenda</a>
+        </div>
+        <div class="col-md-auto d-flex align-items-end gap-2">
+          <a href="/atualizar-agendas" class="btn btn-warning">Editar Agenda</a>
+        </div>
+      </form>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="card shadow-sm p-4">
+      <h2 class="mb-3 text-center text-secondary">Lista de Agendas</h2>
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered align-middle text-center">
+          <thead class="table-dark">
+            <tr>
+              <th>Excluir</th>
+              <th>Título</th>
+              <th>Disciplina</th>
+              <th>Descrição</th>
+              <th>Data de Entrega</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{AgendasTable}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
